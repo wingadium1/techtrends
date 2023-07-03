@@ -1,0 +1,1 @@
+# global db_connection_counter

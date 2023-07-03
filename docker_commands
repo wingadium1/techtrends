@@ -1,0 +1,35 @@
+## Docker commands used to build the application
+docker build . -t techtrends
+
+## Docker commands used to run the application
+# TODO: insert the docker run command
+docker run -it --rm -d -p 7111:3111 --name techtrends techtrends
+
+## Docker commands used to get the application logs
+# TODO: insert the docker logs command
+docker logs techtrends
+
+## Logs from the container running the TechTrends application
+# TODO: paste logs from the Docker container
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+WARNING:werkzeug:2023-07-03 07:57:15,611,  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug:2023-07-03 07:57:15,611,  * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+INFO:app:2023-07-03 07:57:27,988, Article "2020 CNCF Annual Report" retrieved!
+INFO:werkzeug:2023-07-03 07:57:28,000, 172.17.0.1 - - [03/Jul/2023 07:57:28] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:2023-07-03 07:57:28,014, 172.17.0.1 - - [03/Jul/2023 07:57:28] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:2023-07-03 07:57:28,232, 172.17.0.1 - - [03/Jul/2023 07:57:28] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:2023-07-03 07:57:30,111, 172.17.0.1 - - [03/Jul/2023 07:57:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:2023-07-03 07:57:30,125, 172.17.0.1 - - [03/Jul/2023 07:57:30] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:2023-07-03 07:57:34,167, About us page!
+INFO:werkzeug:2023-07-03 07:57:34,169, 172.17.0.1 - - [03/Jul/2023 07:57:34] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:2023-07-03 07:57:34,183, 172.17.0.1 - - [03/Jul/2023 07:57:34] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:2023-07-03 07:57:38,705, 172.17.0.1 - - [03/Jul/2023 07:57:38] "GET /healthz HTTP/1.1" 200 -
+INFO:werkzeug:2023-07-03 07:57:42,413, 172.17.0.1 - - [03/Jul/2023 07:57:42] "GET /metrics HTTP/1.1" 200 -
+ERROR:app:2023-07-03 07:57:47,078, Article with ID 7 not found
+INFO:werkzeug:2023-07-03 07:57:47,082, 172.17.0.1 - - [03/Jul/2023 07:57:47] "GET /7 HTTP/1.1" 404 -
+INFO:werkzeug:2023-07-03 07:57:47,096, 172.17.0.1 - - [03/Jul/2023 07:57:47] "GET /static/css/main.css HTTP/1.1" 304 -
