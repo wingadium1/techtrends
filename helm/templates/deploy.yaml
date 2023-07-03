@@ -4,10 +4,11 @@ metadata:
   annotations:
   labels:
     app: techtrends
+    tag: lastest
   name: techtrends
-  namespace: sandbox
+  namespace: {{ .Values.namespace.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: techtrends
@@ -22,24 +23,19 @@ spec:
         app: techtrends
     spec:
       containers:
-        - image: wingadium1/techtrends:latest
-          imagePullPolicy: IfNotPresent
+        - image: wingadium1/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           name: techtrends
           ports:
-            - containerPort: 3111
+            - containerPort: {{ .Values.containerPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /healthz
-              port: 3111
+              path: {{ .Values.readinessProbe.path }}
+              port: {{ .Values.containerPort }}
           readinessProbe:
             httpGet:
-              path: /healthz
-              port: 3111
+              path: {{ .Values.readinessProbe.path }}
+              port: {{ .Values.containerPort }}
           resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
+{{ toYaml .Values.resources | indent 12 }}
