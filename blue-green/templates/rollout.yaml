@@ -17,7 +17,7 @@ spec:
       release: {{ .Release.Name }}
   strategy:
     blueGreen:
-      activeService: {{ template "blue-green.fullname" . }}-namespace
+      activeService: {{ template "blue-green.fullname" . }}-active
       previewService: {{ template "blue-green.fullname" . }}-preview
   template:
     metadata:
