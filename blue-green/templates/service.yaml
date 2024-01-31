@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "blue-green.fullname" . }}
+  name: {{ template "blue-green.fullname" . }}-active
   labels:
     app: {{ template "blue-green.name" . }}
     chart: {{ template "blue-green.chart" . }}
