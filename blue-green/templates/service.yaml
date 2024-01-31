@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm.fullname" . }}
+  name: {{ template "blue-green.fullname" . }}
   labels:
-    app: {{ template "helm.name" . }}
-    chart: {{ template "helm.chart" . }}
+    app: {{ template "blue-green.name" . }}
+    chart: {{ template "blue-green.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -16,16 +16,16 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "helm.name" . }}
+    app: {{ template "blue-green.name" . }}
     release: {{ .Release.Name }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "helm.fullname" . }}-preview
+  name: {{ template "blue-green.fullname" . }}-preview
   labels:
-    app: {{ template "helm.name" . }}
-    chart: {{ template "helm.chart" . }}
+    app: {{ template "blue-green.name" . }}
+    chart: {{ template "blue-green.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -36,5 +36,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "helm.name" . }}
+    app: {{ template "blue-green.name" . }}
     release: {{ .Release.Name }}
