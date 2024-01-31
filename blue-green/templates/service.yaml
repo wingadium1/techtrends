@@ -8,6 +8,7 @@ metadata:
     chart: {{ template "blue-green.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  namespace: {{ .Values.namespace.name }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -28,6 +29,7 @@ metadata:
     chart: {{ template "blue-green.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  namespace: {{ .Values.namespace.name }}
 spec:
   type: {{ .Values.service.type }}
   ports:
