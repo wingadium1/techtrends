@@ -3,6 +3,14 @@ import os
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 import logging
+import random
+from flagsmith import Flagsmith
+flagsmith = Flagsmith(environment_key="hPLFQzvrDFyjkCmqDfnurh")
+
+# The method below triggers a network request
+flags = flagsmith.get_environment_flags()
+
+users = ["user01", "user02", "user03", "user04", "user05"];
 
 # from app import db_connection_counter
 db_connection_counter = 0
@@ -46,10 +54,17 @@ def index():
 # If the post ID is not found a 404 page is shown
 @app.route('/<int:post_id>')
 def post(post_id):
+    simulate_user = random.choice(users)
+    identity_flags = flagsmith.get_identity_flags(identifier=simulate_user)
+    # Check for feature error_page
+    is_enabled_error_page = identity_flags.is_feature_enabled("error_page")
     post = get_post(post_id)
     if post is None:
         app.logger.error('Article with ID %s not found', post_id)
-        return render_template('404.html'), 404
+        if is_enabled_error_page:
+          return render_template('error.html'), 500
+        else:
+          return render_template('404.html'), 404
     else:
         app.logger.info('Article "%s" retrieved!',post["title"])
         return render_template('post.html', post=post)
