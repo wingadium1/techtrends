@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 import logging
 import random
 from flagsmith import Flagsmith
-flagsmith = Flagsmith(environment_key="hPLFQzvrDFyjkCmqDfnurh")
+flagsmith = Flagsmith(environment_key="ser.4bvVw6igBLuMtiYmD5Y4jv")
 
 # The method below triggers a network request
 flags = flagsmith.get_environment_flags()
